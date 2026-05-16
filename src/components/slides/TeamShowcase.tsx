@@ -1,7 +1,7 @@
 import type { SlideProps } from '../../types/dossier'
 import { dossierData } from '../../data/dossierContent'
 
-export function TeamShowcase({ title, phase, isActive }: SlideProps) {
+export function TeamShowcase({ title, phase }: SlideProps) {
   const scale = phase === 'entry' ? 1 : phase === 'exit' ? 0 : 0
 
   return (

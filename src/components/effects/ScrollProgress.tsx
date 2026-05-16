@@ -1,7 +1,6 @@
 import { useDossierStore } from '../../stores/useDossierStore'
 
 export function ScrollProgress() {
-  const progress = useDossierStore((s) => s.progress)
   const activeSlide = useDossierStore((s) => s.activeSlide)
 
   return (

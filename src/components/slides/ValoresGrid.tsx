@@ -1,6 +1,6 @@
 import type { SlideProps } from '../../types/dossier'
 
-export function ValoresGrid({ title, data, phase, isActive }: SlideProps) {
+export function ValoresGrid({ title, data, phase }: SlideProps) {
   const scale = phase === 'entry' ? 1 : phase === 'exit' ? 0.5 : 0.8
   const valores = data.valores as Array<{ icon: string; label: string; desc: string }>
 

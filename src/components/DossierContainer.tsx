@@ -68,7 +68,7 @@ export function DossierContainer() {
       const panels = slidesRef.current?.querySelectorAll('.slide-panel')
       if (!panels) return
 
-      panels.forEach((panel, i) => {
+      panels.forEach((panel) => {
         ScrollTrigger.create({
           trigger: panel as HTMLElement,
           start: 'top bottom',

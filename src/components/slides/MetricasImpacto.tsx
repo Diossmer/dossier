@@ -1,6 +1,6 @@
 import type { SlideProps } from '../../types/dossier'
 
-export function MetricasImpacto({ title, data, phase, isActive }: SlideProps) {
+export function MetricasImpacto({ title, data, phase }: SlideProps) {
   const opacity = phase === 'exit' ? 1 : 0.2
   const metrics = data.metrics as Array<{ value: string; label: string; icon: string }>
   const lecciones = data.lecciones as string[]

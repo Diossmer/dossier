@@ -1,6 +1,6 @@
 import type { SlideProps } from '../../types/dossier'
 
-export function SplitTextImage({ title, data, phase, isActive }: SlideProps) {
+export function SplitTextImage({ title, data }: SlideProps) {
   const text = data.text as string[]
   const flow = data.problemFlow as string[]
 

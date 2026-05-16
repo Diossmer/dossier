@@ -1,6 +1,6 @@
 import type { SlideProps } from '../../types/dossier'
 
-export function TimelineFlow({ title, data, phase, isActive }: SlideProps) {
+export function TimelineFlow({ title, data }: SlideProps) {
   const layers = data.layers as Array<{ name: string; tech: string; color: string }>
   const sequence = data.sequence as string[]
 
