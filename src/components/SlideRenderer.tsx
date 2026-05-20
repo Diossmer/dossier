@@ -28,7 +28,7 @@ export function SlideRenderer({ slide, index }: SlideRendererProps) {
   const phase = useDossierStore((s) => s.phase)
 
   return (
-    <div className="w-full max-w-6xl mx-auto">
+    <div className="w-full max-w-[95rem] mx-auto">
       <Component
         title={slide.title}
         data={slide.data}

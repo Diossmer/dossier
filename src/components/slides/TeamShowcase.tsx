@@ -7,7 +7,7 @@ export function TeamShowcase({ title, phase }: SlideProps) {
 
   return (
     <div
-      className="w-full max-w-[90rem] mx-auto transition-all duration-700 px-4"
+      className="w-full max-w-[100vw] mx-auto transition-all duration-700"
       style={{ transform: `scale(${scale})` }}
     >
       <h2 className="text-dossier-heading mb-12 text-center bg-gradient-to-r from-emerald-300 to-blue-400 bg-clip-text text-transparent">
@@ -52,7 +52,7 @@ export function TeamShowcase({ title, phase }: SlideProps) {
               </p>
 
               <div className="max-w-0 group-hover:max-w-xs opacity-0 group-hover:opacity-100 transition-all duration-500 overflow-hidden">
-                <p className="text-dossier-caption text-gray-400 italic px-4">
+                <p className="text-dossier-caption text-red-400 italic px-4 font-bold">
                   "{member.phrase}"
                 </p>
               </div>

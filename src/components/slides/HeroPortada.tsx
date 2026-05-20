@@ -1,7 +1,7 @@
 import type { SlideProps } from '../../types/dossier'
 
 export function HeroPortada({ title, data, phase, isActive }: SlideProps) {
-  const scale = (phase === 'content' || phase === 'impact') ? 1 : phase === 'entry' ? 1.05 : 0.95
+  const scale = (phase === 'content' || phase === 'impact') ? 1.2 : phase === 'entry' ? 1.05 : 0.95
 
   return (
     <div
