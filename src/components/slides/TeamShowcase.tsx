@@ -2,11 +2,12 @@ import type { SlideProps } from '../../types/dossier'
 import { dossierData } from '../../data/dossierContent'
 
 export function TeamShowcase({ title, phase }: SlideProps) {
-  const scale = phase === 'entry' ? 1 : phase === 'exit' ? 0 : 0
+  const scale = (phase === 'content' || phase === 'impact') ? 1 : phase === 'entry' ? 0.9 : 0.9
+
 
   return (
     <div
-      className="w-full transition-all duration-700"
+      className="w-full max-w-6xl mx-auto transition-all duration-700"
       style={{ transform: `scale(${scale})` }}
     >
       <h2 className="text-dossier-heading mb-12 text-center bg-gradient-to-r from-emerald-300 to-blue-400 bg-clip-text text-transparent">

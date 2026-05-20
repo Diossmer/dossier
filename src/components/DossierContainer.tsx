@@ -6,6 +6,7 @@ import { SlideRenderer } from './SlideRenderer'
 import { ParticleBackground } from './effects/ParticleBackground'
 import { ScrollGIF } from './effects/ScrollGIF'
 import { ScrollProgress } from './effects/ScrollProgress'
+import { CinemaEffects } from './effects/CinemaEffects'
 import { dossierData } from '../data/dossierContent'
 import { useDossierStore } from '../stores/useDossierStore'
 import type { SlidePhase } from '../types/dossier'
@@ -42,7 +43,7 @@ export function DossierContainer() {
 
       const withinSlide = (e.scroll / e.limit) * totalSlides - slideIndex
       let phase: SlidePhase = 'content'
-      if (withinSlide < 0.3) phase = 'entry'
+      if (withinSlide < 0.3) phase = 'content'
       else if (withinSlide < 0.55) phase = 'impact'
       else if (withinSlide < 0.8) phase = 'content'
       else phase = 'exit'
@@ -79,7 +80,11 @@ export function DossierContainer() {
             const opacity = progress < 0.2 ? progress / 0.2
               : progress > 0.8 ? (1 - progress) / 0.2
                 : 1
+            const yOffset = progress < 0.2 ? (1 - progress / 0.2) * 100
+              : progress > 0.8 ? -((progress - 0.8) / 0.2) * 100
+                : 0
             el.style.opacity = String(Math.max(0, Math.min(1, opacity)))
+            el.style.transform = `translateY(${yOffset}px)`
           },
         })
       })
@@ -92,6 +97,7 @@ export function DossierContainer() {
     <>
       <ScrollGIF />
       <ParticleBackground />
+      <CinemaEffects />
 
       <div ref={containerRef} className="relative z-10">
         <div ref={slidesRef}>

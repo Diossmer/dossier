@@ -1,6 +1,12 @@
+import { useState, useEffect } from 'react'
 import type { SlideProps } from '../../types/dossier'
 
-export function SplitTextImage({ title, data }: SlideProps) {
+export function SplitTextImage({ title, data, isActive }: SlideProps) {
+  const [hasAnimated, setHasAnimated] = useState(false)
+  
+  useEffect(() => {
+    if (isActive) setHasAnimated(true)
+  }, [isActive])
   const text = data.text as string[]
   const flow = data.problemFlow as string[]
 
@@ -14,7 +20,11 @@ export function SplitTextImage({ title, data }: SlideProps) {
         </h2>
         <div className="space-y-4">
           {text.map((p, i) => (
-            <p key={i} className="text-dossier-body text-gray-300 leading-relaxed">
+            <p 
+              key={i} 
+              className={`text-dossier-body text-gray-300 leading-relaxed ${isActive ? 'animate-fade-up' : hasAnimated ? '' : 'opacity-0'}`}
+              style={{ animationDelay: `${i * 150}ms` }}
+            >
               {p}
             </p>
           ))}

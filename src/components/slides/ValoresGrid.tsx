@@ -1,7 +1,14 @@
+import { useState, useEffect } from 'react'
 import type { SlideProps } from '../../types/dossier'
 
-export function ValoresGrid({ title, data, phase }: SlideProps) {
-  const scale = phase === 'entry' ? 1 : phase === 'exit' ? 0.5 : 0.8
+export function ValoresGrid({ title, data, isActive }: SlideProps) {
+  const [hasAnimated, setHasAnimated] = useState(false)
+  
+  useEffect(() => {
+    if (isActive) setHasAnimated(true)
+  }, [isActive])
+  
+  const scale = isActive ? 1 : 0.9
   const valores = data.valores as Array<{ icon: string; label: string; desc: string }>
 
   return (
@@ -14,14 +21,14 @@ export function ValoresGrid({ title, data, phase }: SlideProps) {
       </h2>
 
       <div className="grid gap-8 mb-12">
-        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:bg-white/10 transition-colors">
+        <div className={`bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:bg-white/10 transition-colors ${isActive ? 'animate-blur-in' : hasAnimated ? '' : 'opacity-0'}`}>
           <h3 className="text-dossier-subheading text-cyan-300 mb-3">Misión</h3>
           <p className="text-dossier-body text-gray-300 leading-relaxed">
             {data.mision as string}
           </p>
         </div>
 
-        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:bg-white/10 transition-colors">
+        <div className={`bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:bg-white/10 transition-colors ${isActive ? 'animate-blur-in delay-200' : hasAnimated ? '' : 'opacity-0'}`}>
           <h3 className="text-dossier-subheading text-blue-300 mb-3">Visión</h3>
           <p className="text-dossier-body text-gray-300 leading-relaxed">
             {data.vision as string}

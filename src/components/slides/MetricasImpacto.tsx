@@ -1,14 +1,21 @@
+import { useState, useEffect } from 'react'
 import type { SlideProps } from '../../types/dossier'
 
-export function MetricasImpacto({ title, data, phase }: SlideProps) {
-  const opacity = phase === 'exit' ? 1 : 0.2
+export function MetricasImpacto({ title, data, isActive }: SlideProps) {
+  const [hasAnimated, setHasAnimated] = useState(false)
+  
+  useEffect(() => {
+    if (isActive) setHasAnimated(true)
+  }, [isActive])
+  
+  const opacity = isActive ? 1 : 0.5
   const metrics = data.metrics as Array<{ value: string; label: string; icon: string }>
   const lecciones = data.lecciones as string[]
   const tecnologias = data.tecnologias as string[]
 
   return (
     <div
-      className="w-full transition-all duration-700"
+      className="w-full max-w-6xl mx-auto transition-all duration-700"
       style={{ opacity }}
     >
       <h2 className="text-dossier-heading mb-12 text-center bg-gradient-to-r from-purple-300 to-cyan-400 bg-clip-text text-transparent">
@@ -36,7 +43,11 @@ export function MetricasImpacto({ title, data, phase }: SlideProps) {
           </h3>
           <ul className="space-y-3">
             {lecciones.map((l, i) => (
-              <li key={i} className="flex items-start gap-3">
+              <li 
+                key={i} 
+                className={`flex items-start gap-3 ${isActive ? 'animate-fade-up' : hasAnimated ? '' : 'opacity-0'}`}
+                style={{ animationDelay: `${i * 150}ms` }}
+              >
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0" />
                 <span className="text-dossier-body text-gray-300">{l}</span>
               </li>

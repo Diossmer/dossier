@@ -7,6 +7,7 @@ interface Particle {
   vy: number
   size: number
   opacity: number
+  rgb: string
 }
 
 export function ParticleBackground() {
@@ -24,7 +25,7 @@ export function ParticleBackground() {
 
       ctx.beginPath()
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-      ctx.fillStyle = `hsla(217, 80%, 60%, ${p.opacity})`
+      ctx.fillStyle = `rgba(${p.rgb}, ${p.opacity})`
       ctx.fill()
     })
 
@@ -38,7 +39,7 @@ export function ParticleBackground() {
           ctx.beginPath()
           ctx.moveTo(particles[i].x, particles[i].y)
           ctx.lineTo(particles[j].x, particles[j].y)
-          ctx.strokeStyle = `hsla(217, 60%, 50%, ${0.15 * (1 - dist / 150)})`
+          ctx.strokeStyle = `rgba(${particles[i].rgb}, ${0.15 * (1 - dist / 150)})`
           ctx.lineWidth = 0.5
           ctx.stroke()
         }
@@ -59,14 +60,15 @@ export function ParticleBackground() {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
 
-      const count = Math.min(60, Math.floor((canvas.width * canvas.height) / 30000))
+      const count = Math.min(130, Math.floor((canvas.width * canvas.height) / 12000))
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.8,
         vy: (Math.random() - 0.5) * 0.8,
         size: Math.random() * 2 + 1,
-        opacity: Math.random() * 0.3 + 0.1,
+        opacity: Math.random() * 0.4 + 0.1,
+        rgb: Math.random() > 0.5 ? '255, 88, 95' : '213, 214, 210'
       }))
     }
 

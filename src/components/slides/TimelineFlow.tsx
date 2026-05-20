@@ -1,6 +1,12 @@
+import { useState, useEffect } from 'react'
 import type { SlideProps } from '../../types/dossier'
 
-export function TimelineFlow({ title, data }: SlideProps) {
+export function TimelineFlow({ title, data, isActive }: SlideProps) {
+  const [hasAnimated, setHasAnimated] = useState(false)
+  
+  useEffect(() => {
+    if (isActive) setHasAnimated(true)
+  }, [isActive])
   const layers = data.layers as Array<{ name: string; tech: string; color: string }>
   const sequence = data.sequence as string[]
 
@@ -22,7 +28,11 @@ export function TimelineFlow({ title, data }: SlideProps) {
           </h3>
           <div className="space-y-4">
             {layers.map((layer, i) => (
-              <div key={i} className="relative">
+              <div 
+                key={i} 
+                className={`relative ${isActive ? 'animate-fade-right' : hasAnimated ? '' : 'opacity-0'}`}
+                style={{ animationDelay: `${i * 150}ms` }}
+              >
                 {i < layers.length - 1 && (
                   <div className="absolute left-[19px] top-12 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/40 to-transparent" />
                 )}

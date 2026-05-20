@@ -1,15 +1,15 @@
 import type { SlideProps } from '../../types/dossier'
 
 export function HeroPortada({ title, data, phase, isActive }: SlideProps) {
-  const scale = phase === 'entry' ? 1.5 : phase === 'exit' ? 0 : 0.5
+  const scale = (phase === 'content' || phase === 'impact') ? 1 : phase === 'entry' ? 1.05 : 0.95
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-[100vh] text-center select-none transition-all duration-700"
+      className="flex flex-col items-center justify-center min-h-screen text-center select-none transition-all duration-700"
       style={{ transform: `scale(${scale})` }}
     >
       <div className="relative mb-8">
-        <div className="text-7xl md:text-9xl font-bold tracking-tighter bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent animate-gradient">
+        <div className="text-7xl md:text-9xl font-bold tracking-tighter bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent animate-gradient animate-rgb-glitch">
           {title}
         </div>
         <div className="absolute inset-0 text-7xl md:text-9xl font-bold tracking-tighter text-blue-500/20 blur-3xl animate-glow-pulse -z-10">
