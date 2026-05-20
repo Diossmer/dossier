@@ -7,8 +7,18 @@ interface Particle {
   vy: number
   size: number
   opacity: number
-  rgb: string
+  colorIndex: number
+  nextColorIndex: number
+  colorProgress: number
+  colorSpeed: number
+  currentRgb: string
 }
+
+const COLORS = [
+  [255, 219, 88], // Amarillo
+  [59, 130, 246], // Azul
+  [239, 68, 68]   // Rojo
+]
 
 export function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -23,9 +33,26 @@ export function ParticleBackground() {
       if (p.x < 0 || p.x > w) p.vx *= -1
       if (p.y < 0 || p.y > h) p.vy *= -1
 
+      // Animación de transición de color
+      p.colorProgress += p.colorSpeed
+      if (p.colorProgress >= 1) {
+        p.colorProgress = 0
+        p.colorIndex = p.nextColorIndex
+        let next = Math.floor(Math.random() * COLORS.length)
+        while (next === p.colorIndex) next = Math.floor(Math.random() * COLORS.length)
+        p.nextColorIndex = next
+      }
+
+      const c1 = COLORS[p.colorIndex]
+      const c2 = COLORS[p.nextColorIndex]
+      const r = Math.round(c1[0] + (c2[0] - c1[0]) * p.colorProgress)
+      const g = Math.round(c1[1] + (c2[1] - c1[1]) * p.colorProgress)
+      const b = Math.round(c1[2] + (c2[2] - c1[2]) * p.colorProgress)
+      p.currentRgb = `${r}, ${g}, ${b}`
+
       ctx.beginPath()
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-      ctx.fillStyle = `rgba(${p.rgb}, ${p.opacity})`
+      ctx.fillStyle = `rgba(${p.currentRgb}, ${p.opacity})`
       ctx.fill()
     })
 
@@ -35,12 +62,18 @@ export function ParticleBackground() {
         const dy = particles[i].y - particles[j].y
         const dist = Math.sqrt(dx * dx + dy * dy)
 
-        if (dist < 150) {
+        if (dist < 180) {
           ctx.beginPath()
           ctx.moveTo(particles[i].x, particles[i].y)
           ctx.lineTo(particles[j].x, particles[j].y)
-          ctx.strokeStyle = `rgba(${particles[i].rgb}, ${0.15 * (1 - dist / 150)})`
-          ctx.lineWidth = 0.5
+
+          const opacity = 0.25 * (1 - dist / 180)
+          const gradient = ctx.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y)
+          gradient.addColorStop(0, `rgba(${particles[i].currentRgb}, ${opacity})`)
+          gradient.addColorStop(1, `rgba(${particles[j].currentRgb}, ${opacity})`)
+
+          ctx.strokeStyle = gradient
+          ctx.lineWidth = 3
           ctx.stroke()
         }
       }
@@ -61,15 +94,26 @@ export function ParticleBackground() {
       canvas.height = window.innerHeight
 
       const count = Math.min(130, Math.floor((canvas.width * canvas.height) / 12000))
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        size: Math.random() * 2 + 1,
-        opacity: Math.random() * 0.4 + 0.1,
-        rgb: Math.random() > 0.5 ? '255, 88, 95' : '213, 214, 210'
-      }))
+
+      particles = Array.from({ length: count }, () => {
+        const colorIndex = Math.floor(Math.random() * COLORS.length)
+        let nextColorIndex = Math.floor(Math.random() * COLORS.length)
+        while (nextColorIndex === colorIndex) nextColorIndex = Math.floor(Math.random() * COLORS.length)
+
+        return {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8,
+          size: Math.random() * 2 + 6.5,
+          opacity: Math.random() * 0.5 + 0.2,
+          colorIndex,
+          nextColorIndex,
+          colorProgress: Math.random(),
+          colorSpeed: Math.random() * 0.003 + 0.001, // Velocidad suave de transición
+          currentRgb: ''
+        }
+      })
     }
 
     resize()
