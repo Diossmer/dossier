@@ -17,7 +17,7 @@ export function TimelineFlow({ title, data, isActive }: SlideProps) {
       <h2 className="text-dossier-heading mb-4 text-center bg-gradient-to-r from-blue-300 to-emerald-400 bg-clip-text text-transparent">
         {title}
       </h2>
-      <p className="text-dossier-body text-center text-gray-400 mb-8 max-w-2xl mx-auto">
+      <p className="text-dossier-body text-center text-gray-200 mb-8 max-w-2xl mx-auto">
         {data.description as string}
       </p>
 
@@ -45,7 +45,7 @@ export function TimelineFlow({ title, data, isActive }: SlideProps) {
                   </div>
                   <div>
                     <p className="text-dossier-body font-medium">{layer.name}</p>
-                    <p className="text-dossier-caption text-gray-400">{layer.tech}</p>
+                    <p className="text-dossier-caption text-gray-200">{layer.tech}</p>
                   </div>
                 </div>
               </div>
@@ -63,9 +63,9 @@ export function TimelineFlow({ title, data, isActive }: SlideProps) {
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${i === 0 ? 'bg-emerald-500' : i === sequence.length - 1 ? 'bg-blue-500' : 'bg-white/20'}`}>
                   {i + 1}
                 </div>
-                <p className="text-dossier-body text-sm text-gray-300">{step}</p>
+                <p className="text-dossier-body text-sm text-white">{step}</p>
                 {i < sequence.length - 1 && (
-                  <svg className="w-4 h-4 text-gray-600 shrink-0 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-gray-400 shrink-0 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
                 )}

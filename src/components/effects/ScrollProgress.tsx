@@ -11,7 +11,7 @@ export function ScrollProgress() {
           style={{ height: `${(activeSlide + 1) * 16.66}%` }}
         />
       </div>
-      <span className="text-dossier-caption text-gray-500 font-mono">
+      <span className="text-dossier-caption text-gray-300 font-mono">
         {String(activeSlide + 1).padStart(2, '0')}/06
       </span>
     </div>

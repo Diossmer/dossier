@@ -23,14 +23,14 @@ export function ValoresGrid({ title, data, isActive }: SlideProps) {
       <div className="grid gap-8 mb-12">
         <div className={`bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:bg-white/10 transition-colors ${isActive ? 'animate-blur-in' : hasAnimated ? '' : 'opacity-0'}`}>
           <h3 className="text-dossier-subheading text-cyan-300 mb-3">Misión</h3>
-          <p className="text-dossier-body text-gray-300 leading-relaxed">
+          <p className="text-dossier-body text-white leading-relaxed">
             {data.mision as string}
           </p>
         </div>
 
         <div className={`bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:bg-white/10 transition-colors ${isActive ? 'animate-blur-in delay-200' : hasAnimated ? '' : 'opacity-0'}`}>
           <h3 className="text-dossier-subheading text-blue-300 mb-3">Visión</h3>
-          <p className="text-dossier-body text-gray-300 leading-relaxed">
+          <p className="text-dossier-body text-white leading-relaxed">
             {data.vision as string}
           </p>
         </div>
@@ -46,7 +46,7 @@ export function ValoresGrid({ title, data, isActive }: SlideProps) {
               <Icon name={v.icon} />
             </div>
             <h4 className="text-dossier-subheading text-sm mb-2">{v.label}</h4>
-            <p className="text-dossier-caption text-gray-400">{v.desc}</p>
+            <p className="text-dossier-caption text-gray-200">{v.desc}</p>
           </div>
         ))}
       </div>

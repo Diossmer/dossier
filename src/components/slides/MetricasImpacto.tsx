@@ -32,7 +32,7 @@ export function MetricasImpacto({ title, data, isActive, phase }: SlideProps) {
             <p className="text-4xl md:text-5xl font-bold bg-gradient-to-br from-cyan-300 to-purple-400 bg-clip-text text-transparent mb-2">
               {m.value}
             </p>
-            <p className="text-dossier-caption text-gray-400">{m.label}</p>
+            <p className="text-dossier-caption text-gray-200">{m.label}</p>
           </div>
         ))}
       </div>
@@ -50,7 +50,7 @@ export function MetricasImpacto({ title, data, isActive, phase }: SlideProps) {
                 style={{ animationDelay: `${i * 150}ms` }}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0" />
-                <span className="text-dossier-body text-gray-300">{l}</span>
+                <span className="text-dossier-body text-white">{l}</span>
               </li>
             ))}
           </ul>
@@ -64,14 +64,14 @@ export function MetricasImpacto({ title, data, isActive, phase }: SlideProps) {
             {tecnologias.map((t) => (
               <span
                 key={t}
-                className="px-3 py-1.5 rounded-full text-dossier-caption border border-white/20 bg-white/5 text-gray-300 hover:bg-white/10 transition-colors"
+                className="px-3 py-1.5 rounded-full text-dossier-caption border border-white/20 bg-white/5 text-white hover:bg-white/10 transition-colors"
               >
                 {t}
               </span>
             ))}
           </div>
           <div className="mt-6 pt-6 border-t border-white/10">
-            <p className="text-dossier-caption text-gray-500 italic">
+            <p className="text-dossier-caption text-gray-300 italic">
               "La tecnología debe ser humana. No programamos para servidores, sino para personas que necesitan herramientas confiables."
             </p>
           </div>

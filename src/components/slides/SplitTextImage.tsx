@@ -22,7 +22,7 @@ export function SplitTextImage({ title, data, isActive }: SlideProps) {
           {text.map((p, i) => (
             <p 
               key={i} 
-              className={`text-dossier-body text-gray-300 leading-relaxed ${isActive ? 'animate-fade-up' : hasAnimated ? '' : 'opacity-0'}`}
+              className={`text-dossier-body text-white leading-relaxed ${isActive ? 'animate-fade-up' : hasAnimated ? '' : 'opacity-0'}`}
               style={{ animationDelay: `${i * 150}ms` }}
             >
               {p}
@@ -44,7 +44,7 @@ export function SplitTextImage({ title, data, isActive }: SlideProps) {
               <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${i === 0 ? 'bg-red-500' : i === flow.length - 1 ? 'bg-orange-500' : 'bg-white/20'}`}>
                 {i + 1}
               </div>
-              <p className="text-dossier-body text-gray-300">{step}</p>
+              <p className="text-dossier-body text-white">{step}</p>
             </div>
           ))}
         </div>
