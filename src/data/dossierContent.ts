@@ -30,7 +30,7 @@ export const dossierData: DossierData = {
         subtitle: 'Sistema de Análisis de Verificación de API Móviles',
         tagline: 'Proyecto Sociotecnológico — UNETI',
         group: 'Grupo 3 — Chimera',
-        date: 'Febrero 2026',
+        date: 'Noviembre 2025 - Febrero 2026',
       },
     },
     {
